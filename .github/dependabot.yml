@@ -1,0 +1,35 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '09:00'
+    open-pull-requests-limit: 5
+    groups:
+      dev-tooling:
+        patterns:
+          - '@vitejs/*'
+          - 'vite'
+          - 'vitest'
+          - '@vitest/*'
+          - 'typescript'
+          - 'typescript-eslint'
+          - 'eslint*'
+          - 'prettier'
+          - 'husky'
+          - 'lint-staged'
+      react:
+        patterns:
+          - 'react'
+          - 'react-dom'
+          - '@types/react*'
+          - 'react-router-dom'
+      testing:
+        patterns:
+          - '@testing-library/*'
+          - 'jsdom'
+    ignore:
+      - dependency-name: '*'
+        update-types: ['version-update:semver-major']

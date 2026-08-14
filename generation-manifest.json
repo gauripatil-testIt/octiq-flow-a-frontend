@@ -1,0 +1,417 @@
+{
+  "schemaVersion": "1.0",
+  "strategyPack": "default",
+  "capabilityGraph": {
+    "detected": [
+      "pagination",
+      "search"
+    ],
+    "edges": [
+      {
+        "from": "virtualization",
+        "to": "sort",
+        "kind": "implies",
+        "reason": "virtualised + paginated tables always render sortable column headers"
+      },
+      {
+        "from": "pagination",
+        "to": "sort",
+        "kind": "implies",
+        "reason": "virtualised + paginated tables always render sortable column headers"
+      },
+      {
+        "from": "virtualization",
+        "to": "search",
+        "kind": "implies",
+        "reason": "virtualised lists ship with a debounced search input by default"
+      },
+      {
+        "from": "messaging",
+        "to": "scheduling",
+        "kind": "implies",
+        "reason": "real-time messaging commonly requires scheduled / presence awareness"
+      },
+      {
+        "from": "realtime",
+        "to": "scheduling",
+        "kind": "implies",
+        "reason": "real-time messaging commonly requires scheduled / presence awareness"
+      },
+      {
+        "from": "stateMachine",
+        "to": "dragDrop",
+        "kind": "implies",
+        "reason": "approval workflows benefit from drag-to-advance-stage board interaction"
+      },
+      {
+        "from": "approval",
+        "to": "dragDrop",
+        "kind": "implies",
+        "reason": "approval workflows benefit from drag-to-advance-stage board interaction"
+      },
+      {
+        "from": "catalog",
+        "to": "ratings",
+        "kind": "implies",
+        "reason": "marketplace catalog + cart contexts typically expose product ratings"
+      },
+      {
+        "from": "cart",
+        "to": "ratings",
+        "kind": "implies",
+        "reason": "marketplace catalog + cart contexts typically expose product ratings"
+      },
+      {
+        "from": "authContext",
+        "to": "protectedRoutes",
+        "kind": "implies",
+        "reason": "auth context requires protected route wrappers for secured navigation"
+      },
+      {
+        "from": "roleBasedUI",
+        "to": "authContext",
+        "kind": "implies",
+        "reason": "role-based UI decisions require authenticated user and role context"
+      },
+      {
+        "from": "errorBoundary",
+        "to": "toasts",
+        "kind": "implies",
+        "reason": "global render/fetch failures surface recoverable feedback through toast notifications"
+      },
+      {
+        "from": "openapiClient",
+        "to": "errorBoundary",
+        "kind": "implies",
+        "reason": "typed API clients require problem-response handling through the global error boundary layer"
+      },
+      {
+        "from": "approval",
+        "to": "dragDrop",
+        "kind": "conflicts",
+        "reason": "approval/workflow and drag-drop/kanban resolve to conflicting primary layouts — choose one"
+      },
+      {
+        "from": "dragDrop",
+        "to": "approval",
+        "kind": "conflicts",
+        "reason": "approval/workflow and drag-drop/kanban resolve to conflicting primary layouts — choose one"
+      },
+      {
+        "from": "scheduling",
+        "to": "messaging",
+        "kind": "conflicts",
+        "reason": "calendar/scheduling and real-time messaging resolve to conflicting primary layouts (calendar vs. chat)"
+      },
+      {
+        "from": "messaging",
+        "to": "scheduling",
+        "kind": "conflicts",
+        "reason": "calendar/scheduling and real-time messaging resolve to conflicting primary layouts (calendar vs. chat)"
+      },
+      {
+        "from": "catalog",
+        "to": "stateMachine",
+        "kind": "conflicts",
+        "reason": "marketplace catalog and state-machine/kanban resolve to conflicting primary layouts"
+      },
+      {
+        "from": "stateMachine",
+        "to": "catalog",
+        "kind": "conflicts",
+        "reason": "marketplace catalog and state-machine/kanban resolve to conflicting primary layouts"
+      }
+    ]
+  },
+  "compositionPlan": {
+    "totalFileSets": 9,
+    "totalFiles": 83,
+    "fileSets": [
+      {
+        "id": "base-scaffold",
+        "reason": "core project files always emitted regardless of spec content",
+        "fileCount": 33
+      },
+      {
+        "id": "layout-shell",
+        "reason": "app shell + routing for layout=entity-crud pattern=entity-crud",
+        "fileCount": 12
+      },
+      {
+        "id": "shared-utils",
+        "reason": "shared utility modules used by all entity pages",
+        "fileCount": 8
+      },
+      {
+        "id": "ui-spinner",
+        "reason": "loading spinner used by all page types",
+        "fileCount": 1
+      },
+      {
+        "id": "ui-entity-components",
+        "reason": "shared components required by entity list and form pages",
+        "fileCount": 10
+      },
+      {
+        "id": "ui-pagination",
+        "reason": "pagination component — spec has features.pagination.enabled",
+        "fileCount": 1
+      },
+      {
+        "id": "ui-component/toast",
+        "reason": "toast component — requested by spec component/capability declarations",
+        "fileCount": 1
+      },
+      {
+        "id": "entity-crud/employee",
+        "reason": "CRUD layer for entity Employee at /employees",
+        "fileCount": 16
+      },
+      {
+        "id": "router",
+        "reason": "app router — depends on all entity and feature file sets being resolved first",
+        "fileCount": 1
+      }
+    ]
+  },
+  "repairLoop": {
+    "attempted": false,
+    "iterations": 0,
+    "verificationOk": true
+  },
+  "normalizedSpec": {
+    "domain": "saas",
+    "hasEntities": true,
+    "entityCount": 1,
+    "features": {
+      "virtualization": false,
+      "search": true,
+      "pagination": true,
+      "authContext": false,
+      "errorToasts": false,
+      "codeSplitting": false,
+      "darkMode": false,
+      "skeletons": false,
+      "openapiClient": false,
+      "roleBasedUI": false
+    }
+  },
+  "intent": {
+    "title": "Octiq Enterprise — Flow A: Employee Management UI",
+    "domain": "saas",
+    "layoutFamily": "entity-crud",
+    "navigationStyle": "sidebar",
+    "density": "comfortable",
+    "dataPresentation": "table-first",
+    "formPattern": "single-page",
+    "roles": [],
+    "accessibilityLevel": "AA",
+    "securityTier": "standard",
+    "compliance": [],
+    "scenarios": {
+      "authContext": false,
+      "errorToasts": false,
+      "codeSplitting": false,
+      "darkMode": false,
+      "skeletons": false,
+      "openapiClient": false,
+      "roleBasedUI": false
+    },
+    "confidence": 1
+  },
+  "layout": {
+    "resolvedLayout": "entity-crud",
+    "resolvedPattern": "entity-crud"
+  },
+  "variantPack": {
+    "useTopbarNav": false,
+    "useHybridNav": false,
+    "useCompactDensity": false,
+    "useSpaciousDensity": false,
+    "useCardFirst": false,
+    "useMixed": false,
+    "useWizardForm": false,
+    "useDrawerForm": false,
+    "useVirtualizedList": false,
+    "isFeatureDemo": false
+  },
+  "policyDecisions": [
+    {
+      "rule": "unknown-explicit-layout-fallback",
+      "decision": "fallback",
+      "reason": "uiProfile.layoutFamily \"entity-crud\" is not a known layout; fell back to capability-derived \"entity-crud\""
+    }
+  ],
+  "warnings": [
+    "[unknown-explicit-layout-fallback] uiProfile.layoutFamily \"entity-crud\" is not a known layout; fell back to capability-derived \"entity-crud\""
+  ],
+  "tokenDiagnostics": {
+    "finalColors": {
+      "Background": "#f9fafb",
+      "Border": "#e5e7eb",
+      "BorderRadius": "0.5rem",
+      "ContentPadding": "1.5rem",
+      "Error": "#dc2626",
+      "ErrorBg": "#fef2f2",
+      "ErrorBorder": "#fecaca",
+      "ErrorHover": "#b91c1c",
+      "ErrorText": "#b91c1c",
+      "HeaderHeight": "4rem",
+      "InputBg": "#ffffff",
+      "InputBorder": "#d1d5db",
+      "InputFocusBorder": "#6366f1",
+      "Overlay": "rgba(0,0,0,0.50)",
+      "Primary": "#4f46e5",
+      "PrimaryHover": "#4338ca",
+      "PrimaryLight": "#eef2ff",
+      "RowHeight": "40px",
+      "RowHover": "#f5f3ff",
+      "Sidebar": "#111827",
+      "SidebarActiveBg": "#4f46e5",
+      "SidebarBorder": "#374151",
+      "SidebarHoverBg": "#374151",
+      "SidebarText": "#d1d5db",
+      "SidebarWidth": "16rem",
+      "Success": "#16a34a",
+      "SuccessBg": "#f0fdf4",
+      "Surface": "#ffffff",
+      "TableMaxHeight": "600px",
+      "TextInverse": "#ffffff",
+      "TextPrimary": "#111827",
+      "TextSecondary": "#6b7280",
+      "Warning": "#d97706",
+      "WarningBg": "#fffbeb"
+    },
+    "finalSpacing": {
+      "BorderRadius": "0.5rem",
+      "ContentPadding": "1.5rem",
+      "HeaderHeight": "4rem",
+      "RowHeight": "40px",
+      "SidebarWidth": "16rem",
+      "TableMaxHeight": "600px"
+    },
+    "filledByDefault": [
+      "InputBorder",
+      "InputBg",
+      "WarningBg",
+      "TextSecondary",
+      "Overlay",
+      "Error",
+      "HeaderHeight",
+      "RowHeight",
+      "BorderRadius",
+      "TextInverse",
+      "ErrorBorder",
+      "RowHover",
+      "SidebarWidth",
+      "ErrorBg",
+      "SuccessBg",
+      "ErrorText",
+      "ErrorHover",
+      "TableMaxHeight",
+      "Success",
+      "TextPrimary",
+      "InputFocusBorder",
+      "Warning",
+      "ContentPadding"
+    ],
+    "activeThemes": [
+      "light",
+      "dark",
+      "high-contrast"
+    ],
+    "responsiveNotes": [
+      "sidebar nav → drawer on mobile",
+      "comfortable density → card small-screen data"
+    ]
+  },
+  "files": {
+    "generated": [
+      ".npmrc",
+      ".gitignore",
+      ".editorconfig",
+      ".env.example",
+      "package.json",
+      "eslint.config.js",
+      ".prettierrc.json",
+      ".prettierignore",
+      "lint-staged.config.js",
+      "commitlint.config.cjs",
+      ".husky/pre-commit",
+      ".husky/commit-msg",
+      "vite.config.ts",
+      "src/vite-env.d.ts",
+      "tsconfig.json",
+      "tsconfig.base.json",
+      "tsconfig.app.json",
+      "tsconfig.node.json",
+      "tailwind.config.js",
+      "postcss.config.js",
+      "index.html",
+      ".gitattributes",
+      "README.md",
+      "ARCHITECTURE.md",
+      "CHANGELOG.md",
+      ".github/dependabot.yml",
+      ".github/pull_request_template.md",
+      ".github/workflows/ci.yml",
+      "Dockerfile",
+      "nginx.conf",
+      "playwright.config.ts",
+      "src/test/setup.ts",
+      "src/hooks/useDebouncedValue.ts",
+      "src/styles/theme.css",
+      "src/index.css",
+      "src/main.tsx",
+      "src/App.tsx",
+      "src/components/Layout.tsx",
+      "src/components/Sidebar.tsx",
+      "src/components/Header.tsx",
+      "src/components/NotFound.tsx",
+      "src/app/contexts/ThemeContext.tsx",
+      "src/components/Toaster.tsx",
+      "src/components/GlobalErrorBoundary.tsx",
+      "src/shared/components/PageLoader.tsx",
+      "src/utils/cn.ts",
+      "src/shared/utils/constants.ts",
+      "src/shared/utils/matchRowSearch.ts",
+      "src/shared/utils/matchRowSearch.test.ts",
+      "src/shared/utils/apiClient.ts",
+      "src/shared/components/EntitySkeleton.tsx",
+      "src/shared/components/ErrorState.tsx",
+      "src/shared/utils/formatters.ts",
+      "src/shared/components/ui/Spinner.tsx",
+      "src/shared/components/SortIcon.tsx",
+      "src/shared/components/EmptyState.tsx",
+      "src/shared/components/ConfirmDialog.tsx",
+      "src/shared/components/CrudList.tsx",
+      "src/shared/components/FormField.tsx",
+      "src/shared/components/ui/Tooltip.tsx",
+      "src/shared/components/FormPageHeader.tsx",
+      "src/shared/components/ui/Input.tsx",
+      "src/shared/components/ui/Select.tsx",
+      "src/shared/components/ui/Badge.tsx",
+      "src/shared/components/Pagination.tsx",
+      "src/shared/components/ui/Toaster.tsx",
+      "src/features/employee/employeeApi.ts",
+      "src/features/employee/EmployeeListPage.tsx",
+      "src/features/employee/EmployeeDetailPage.tsx",
+      "src/features/employee/EmployeeFormPage.tsx",
+      "src/features/employee/employeeFormFields.tsx",
+      "src/features/employee/useEmployeeList.ts",
+      "src/features/employee/useEmployeeForm.ts",
+      "src/features/employee/useEmployeeDetail.ts",
+      "src/features/employee/index.ts",
+      "src/features/employee/EmployeeListPage.test.tsx",
+      "src/features/employee/EmployeeFormPage.test.tsx",
+      "src/features/employee/EmployeeDetailPage.test.tsx",
+      "src/features/employee/Employee.integration.test.tsx",
+      "e2e/employee.spec.ts",
+      "src/features/employee/EmployeeSection1Fields.tsx",
+      "src/features/employee/employeeMockData.ts",
+      "src/app/router.tsx"
+    ],
+    "skipped": [],
+    "total": 83
+  }
+}

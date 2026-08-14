@@ -1,0 +1,38 @@
+/* theme.css must be imported before Tailwind layers so CSS custom properties
+   are available when utility classes reference them via var(). */
+@import './styles/theme.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Base styles read from semantic token variables — no raw hex values. */
+  body {
+    background-color: var(--color-background, #f9fafb);
+    color: var(--color-text-primary, #111827);
+    @apply antialiased;
+  }
+
+  /* Focus rings use the primary token so they adapt to dark/HC modes. */
+  :focus-visible {
+    outline: 2px solid var(--color-input-focus, #6366f1);
+    outline-offset: 2px;
+  }
+
+  /* Input base styles consume input tokens — templates should use these
+     via @apply or inherit rather than setting raw colors. */
+  input,
+  select,
+  textarea {
+    background-color: var(--color-input-bg, #ffffff);
+    border-color: var(--color-input-border, #d1d5db);
+    color: var(--color-text-primary, #111827);
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    border-color: var(--color-input-focus, #6366f1);
+  }
+}

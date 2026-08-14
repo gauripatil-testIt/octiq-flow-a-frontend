@@ -1,0 +1,18 @@
+# Normalise line endings on checkout
+* text=auto eol=lf
+
+# Binaries — never diff or merge
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.woff binary
+*.woff2 binary
+*.ttf  binary
+*.eot  binary
+
+# Always treat lock files as binary to avoid unnecessary diffs
+package-lock.json binary
+yarn.lock          binary
+pnpm-lock.yaml     binary
